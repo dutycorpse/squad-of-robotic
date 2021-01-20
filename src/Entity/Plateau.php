@@ -1,0 +1,42 @@
+<?php
+declare(strict_types = 1);
+
+namespace App\Entity;
+
+use App\Contract\PlateauInterface;
+use App\Contract\PositionableInterface;
+use App\Model\Position;
+
+class Plateau implements PlateauInterface
+{
+
+    /**
+     * @var Position|null $position
+     */
+    private $position = null;
+
+    /**
+     * Plateau constructeur.
+     * @param Position $position
+     */
+    public function __construct(Position $position)
+    {
+        $this->position = $position;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function relativePosition(PositionableInterface $object): PositionableInterface
+    {
+        return $object;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string)$this->position;
+    }
+}
